@@ -63,3 +63,18 @@ void CVTool::findMaxContour(const vector<vector<Point>>& contours, vector<Point>
 	maxContour = contours[nMaxID];
 	maxID = nMaxID;
 }
+
+string CVTool::debugMat(const cv::Mat& m, const string& strLog)
+{
+	string str = "";
+	if (!m.empty() && m.u) 
+	{
+		str = strLog + " Mat's refcount = ";
+		str += to_string(m.u->refcount);
+	}
+	else 
+	{
+		str = strLog + " Mat is empty!";
+	}
+	return str;
+}
