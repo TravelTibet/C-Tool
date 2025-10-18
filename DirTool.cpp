@@ -11,6 +11,7 @@
 #include <cmath>
 
 using namespace std;
+namespace fs = std::filesystem;
 
 void DirTool::makeDir(const char* path)
 {
@@ -112,6 +113,12 @@ bool DirTool::getDir(std::string path, std::vector<std::string>& dirs, bool bIsF
 {
 	std::vector<std::string> files;
 	return getDirAndFiles(path, dirs, files, bIsFindChild, bIsCheckEmpty);
+}
+
+string DirTool::relativaPathToAbsPath(std::string relativePath)
+{
+	fs::path absPath = fs::absolute(relativePath);  // 转绝对路径
+	return absPath.string();
 }
 
 void DirTool::handleEntry(const std::filesystem::directory_entry& entry, std::vector<std::string>& dirs, std::vector<std::string>& files, bool bIsCheckEmptyDir)
